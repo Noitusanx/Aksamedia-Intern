@@ -19,24 +19,30 @@ const EditData = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateData(parseInt(id), name);
+    const updatedItem = { id: parseInt(id), name };
+    updateData(parseInt(id), updatedItem);
     navigate("/");
   };
 
   const containerClass =
     theme === "light"
-      ? "min-h-screen flex items-center justify-center bg-white"
-      : "min-h-screen flex items-center justify-center bg-gray-900";
+      ? "min-h-screen flex items-center justify-center bg-white px-6"
+      : "min-h-screen  flex items-center justify-center bg-gray-900 px-6";
 
   const boxClass =
     theme === "light"
-      ? "w-full max-w-md p-6 md:p-8 bg-gray-100 text-gray-900 rounded-lg shadow-lg"
-      : "w-full max-w-md p-6 md:p-8 bg-gray-800 text-white rounded-lg shadow-lg";
+      ? "w-full max-w-md p-6 md:p-8 bg-gray-100 text-gray-900 rounded-lg border-black border-[1px] max-h-full"
+      : "w-full max-w-md p-6 md:p-8 bg-gray-800 text-white rounded-lg border-gray-300 border-[1px] max-h-full";
+
+  const inputClass =
+    theme === "light"
+      ? "w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white text-black"
+      : "w-full p-3 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white bg-gray-700";
 
   return (
     <div className={containerClass}>
       <div className={boxClass}>
-        <h2 className="text-2xl md:text-3xl font-semibold mb-4 md:mb-6">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4 md:mb-6 ">
           Edit Data
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
@@ -52,7 +58,7 @@ const EditData = () => {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+              className={inputClass}
               required
             />
           </div>

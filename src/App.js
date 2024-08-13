@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AddData from "./pages/AddData";
 import EditData from "./pages/EditData";
+import EditUser from "./pages/EditUser";
 import { AuthProvider } from "./contexts/AuthContext";
 import { DataProvider } from "./contexts/DataContext";
 
@@ -52,7 +53,15 @@ const App = () => {
               }
             />
             <Route
-              path="/edit/:id"
+              path="/edit/user"
+              element={
+                <ProtectedRoute>
+                  <EditUser />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit/data/:id"
               element={
                 <ProtectedRoute>
                   <EditData />

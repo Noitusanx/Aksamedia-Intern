@@ -11,20 +11,24 @@ const AddData = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newItem = { id: Date.now(), name };
-    addData(newItem);
-    navigate("/");
+    if (name) {
+      const newItem = { id: Date.now(), name };
+      addData(newItem);
+      navigate("/");
+    } else {
+      console.error("Name is undefined or empty");
+    }
   };
 
   const containerClass =
     theme === "light"
-      ? "min-h-screen flex items-center justify-center bg-white"
-      : "min-h-screen flex items-center justify-center bg-gray-900";
+      ? "min-h-screen flex items-center justify-center bg-white px-6"
+      : "min-h-screen flex items-center justify-center bg-gray-900 px-6";
 
   const boxClass =
     theme === "light"
-      ? "w-full max-w-md p-8 bg-gray-100 text-gray-900 rounded-lg shadow-lg"
-      : "w-full max-w-md p-8 bg-gray-800 text-white rounded-lg shadow-lg";
+      ? "w-full max-w-md p-8 bg-gray-100 text-gray-900 rounded-lg border-black border-[1px]"
+      : "w-full max-w-md p-8 bg-gray-800 text-white rounded-lg border-gray-400 border-[1px]";
 
   const labelClass = theme === "light" ? "text-gray-500" : "text-gray-400";
 

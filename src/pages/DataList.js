@@ -10,17 +10,18 @@ const DataList = () => {
     setSearchTerm,
     currentPage,
     setCurrentPage,
+    totalPages,
     deleteData,
   } = useContext(DataContext);
   const { theme } = useContext(ThemeContext);
-  const itemsPerPage = 10;
-  const totalPages = Math.ceil(data.length / itemsPerPage);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
     const queryParams = new URLSearchParams(window.location.search);
     queryParams.set("search", e.target.value);
+    queryParams.set("page", 1);
     window.history.replaceState(null, "", "?" + queryParams.toString());
+    setCurrentPage(1);
   };
 
   const handlePageChange = (page) => {
@@ -69,7 +70,7 @@ const DataList = () => {
               </span>
               <div className="flex space-x-2">
                 <Link
-                  to={`/edit/${item.id}`}
+                  to={`/edit/data/${item.id}`}
                   className={`${
                     theme === "light"
                       ? "text-blue-500 hover:text-blue-700"
@@ -102,23 +103,24 @@ const DataList = () => {
         )}
       </ul>
       <div className="mt-4 flex justify-center space-x-1">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageChange(index + 1)}
-            className={`px-3 py-1 rounded ${
-              currentPage === index + 1
-                ? theme === "light"
-                  ? "bg-blue-500 text-white"
-                  : "bg-blue-700 text-white"
-                : theme === "light"
-                ? "bg-gray-200 text-black"
-                : "bg-gray-600 text-white"
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
+        {totalPages > 1 &&
+          Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              className={`px-3 py-1 rounded ${
+                currentPage === index + 1
+                  ? theme === "light"
+                    ? "bg-blue-500 text-white"
+                    : "bg-blue-700 text-white"
+                  : theme === "light"
+                  ? "bg-gray-200 text-black"
+                  : "bg-gray-600 text-white"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
       </div>
     </div>
   );

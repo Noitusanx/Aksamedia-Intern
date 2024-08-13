@@ -7,18 +7,18 @@ const Home = () => {
 
   const containerClass =
     theme === "light"
-      ? "min-h-screen flex flex-col items-center justify-center bg-white text-gray-900"
-      : "min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white";
+      ? "min-h-screen flex flex-col items-center justify-center bg-white text-gray-900 px-6"
+      : "min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-6";
 
   const boxClass =
     theme === "light"
-      ? "w-full max-w-4xl p-8 bg-gray-100 text-gray-900 rounded-lg shadow-lg"
-      : "w-full max-w-4xl p-8 bg-gray-800 text-white rounded-lg shadow-lg";
+      ? "w-full max-w-4xl p-8 bg-gray-100 text-gray-900 rounded-lg border-black border-[1px]"
+      : "w-full max-w-4xl p-8 bg-gray-800 text-white rounded-lg border-gray-400 border-[1px]";
 
   return (
     <div className={containerClass}>
       <div className={boxClass}>
-        <h1 className="text-2xl md:text-4xl font-extrabold text-center mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-4xl font-extrabold text-center mb-6 md:mb-8 ">
           Welcome to the Home Page
         </h1>
         <p className="text-base md:text-lg text-center mb-8 md:mb-12">
